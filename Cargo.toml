@@ -1,0 +1,30 @@
+[package]
+name = "gpui-goo"
+version = "0.1.0"
+edition = "2024"
+license = "Apache-2.0"
+description = "Authenticated native UI observation and input for developer-owned tests"
+
+[features]
+default = []
+gpui = ["dep:gpui", "dep:async-channel", "dep:raw-window-handle", "dep:x11rb", "dep:image"]
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+base64 = "0.22"
+gpui = { package = "gpui-kit", version = "0.9.1", features = ["test-support"], optional = true }
+async-channel = { version = "2", optional = true }
+image = { version = "0.25", default-features = false, features = ["png"], optional = true }
+raw-window-handle = { version = "0.6", optional = true }
+
+[target.'cfg(target_os = "linux")'.dependencies]
+x11rb = { version = "0.13", default-features = false, optional = true }
+
+[dev-dependencies]
+expect-test = "1.5"
+
+[[example]]
+name = "controls"
+required-features = ["gpui"]

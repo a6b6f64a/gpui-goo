@@ -1,0 +1,9 @@
+[test-groups]
+gui = { max-threads = 1 }
+
+[[profile.default.overrides]]
+filter = 'binary(native_controls)'
+test-group = 'gui'
+
+[profile.gui]
+default-filter = 'binary(native_controls)'
